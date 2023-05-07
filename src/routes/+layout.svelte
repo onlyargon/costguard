@@ -11,7 +11,7 @@
 
 <Toast />
 
-<div class="max-w-7xl mx-auto p-8 sm:px-0 sm:py-0 ">
+<div class="max-w-7xl mx-auto p-4 sm:px-0 sm:py-0 ">
 	<Navbar {links} user={data.user} />
 	<slot />
 </div>

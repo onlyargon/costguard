@@ -22,7 +22,7 @@
 </script>
 
 <div class="max-w-xl mx-auto h-screen grid place-content-center">
-	<form class="flex flex-col gap-4 w-96" method="post" use:enhance={loginFn}>
+	<form class="flex flex-col gap-4 w-full sm:w-96" method="post" use:enhance={loginFn}>
 		<TextInput
 			label="Email"
 			name="email"

@@ -19,8 +19,8 @@
 	};
 </script>
 
-<div class="max-w-lg mx-auto h-screen grid place-content-center">
-	<form method="post" class="flex flex-col gap-2 w-96" use:enhance={registerFn}>
+<div class="max-w-xl mx-auto h-screen grid place-content-center">
+	<form method="post" class="flex flex-col gap-2 w-full sm:w-96" use:enhance={registerFn}>
 		<TextInput
 			id="email"
 			type="text"
