@@ -26,12 +26,14 @@
 						<User2 />
 					</button>
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-					<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-						<li><a href="/home">Settings</a></li>
+					<div tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+						<a href="/home">
+							<button class="btn btn-ghost w-full" type="button"> Settings</button>
+						</a>
 						<form action="/logout" method="POST">
-							<button type="submit" class="btn btn-ghost">Logout</button>
+							<button type="submit" class="btn btn-ghost w-full">Logout</button>
 						</form>
-					</ul>
+					</div>
 				</div>
 			{/if}
 		</ul>
