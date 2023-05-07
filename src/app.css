@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+	@apply normal-case;
+}
+
+body {
+	background: radial-gradient(closest-side, #290960, #292f3c);
+}
+
+html::-webkit-scrollbar {
+	width: 7px;
+}
+
+html::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+	background: #661ae6;
+	border-radius: 10px;
+}
