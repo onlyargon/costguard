@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import type { NameValue } from './models/types';
 
 export const loading = writable<boolean>(false);
 export function setLoading(state: boolean) {
@@ -26,37 +27,13 @@ export const transactionTypes = writable([
 	{ name: 'Investment', value: 'investment' },
 	{ name: 'Savings', value: 'savings' }
 ]);
-export const categories = writable([
-	{ name: 'Groceries', value: 'groceries' },
-	{ name: 'Other', value: 'other' },
-	{ name: 'Transfers', value: 'transfers' },
-	{ name: 'Salary', value: 'salary' },
-	{ name: 'Utility', value: 'utility' },
-	{ name: 'Fuel', value: 'fuel' },
-	{ name: 'Shopping', value: 'shopping' },
-	{ name: 'Eating out', value: 'eating-out' },
-	{ name: 'Travel', value: 'travel' },
-	{ name: 'General', value: 'general' },
-	{ name: 'Entertainment', value: 'entertainment' },
-	{ name: 'Exercise', value: 'exercise' },
-	{ name: 'Gifts', value: 'gifts' },
-	{ name: 'Car payment', value: 'car-payment' },
-	{ name: 'Loan repay', value: 'loan-repay' },
-	{ name: 'Installment', value: 'installment' },
-	{ name: 'Rent', value: 'rent' },
-	{ name: 'Tax', value: 'tax' },
-	{ name: 'Subscription', value: 'subscription' },
-	{ name: 'Freelance', value: 'freelance' },
-	{ name: 'Interest', value: 'interest' }
-]);
 
-export const accounts = writable([
-	{ name: 'Sampath Bank', value: 'sampath-bank' },
-	{ name: 'Seylan Bank', value: 'seylan-bank' },
-	{ name: 'Frimi', value: 'frimi' },
-	{ name: 'NDB Bank', value: 'ndb-bank' },
-	{ name: 'NDB CC', value: 'ndb-cc' },
-	{ name: 'Amex', value: 'amex' },
-	{ name: 'Seylan CC', value: 'seylan-cc' },
-	{ name: 'LB CIM', value: 'lb-cim' }
-]);
+export const categories = writable<NameValue[]>([]);
+export function setCategories(data: NameValue[]) {
+	categories.set(data);
+}
+
+export const accounts = writable<NameValue[]>([]);
+export function setAccounts(data: NameValue[]) {
+	accounts.set(data);
+}

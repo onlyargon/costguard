@@ -54,7 +54,6 @@
 	<div class="flex-1">
 		<p>Hello! 👋🏻, {data?.user?.email}</p>
 	</div>
-	<a class="btn btn-primary" href="/add-transaction"> Add transaction </a>
 </div>
 
 <div>

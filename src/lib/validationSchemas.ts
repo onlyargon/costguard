@@ -26,3 +26,8 @@ export const registerSchema = zfd
 			});
 		}
 	});
+
+export const settingsSchema = zfd.formData({
+	accounts: zfd.text(z.string().nonempty()),
+	categories: zfd.text(z.string().nonempty())
+});

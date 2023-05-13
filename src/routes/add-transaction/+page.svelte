@@ -2,6 +2,7 @@
 	import TextInput from '$lib/components/TextInput.svelte';
 	import { accounts, categories, transactionTypes } from '$lib/stores';
 	import Select from '$lib/components/Select.svelte';
+	import { map } from 'zod';
 
 	let selectedTransactionType = '';
 	let ownAccount = false;
@@ -16,9 +17,9 @@
 	};
 </script>
 
-<div class="max-w-2xl mx-auto min-h-screen">
-	<div class="mb-10">
-		<h1 class="text-2xl font-bold">Add Transaction</h1>
+<div class="max-w-3xl mx-auto min-h-screen">
+	<div class="mt-10">
+		<h1 class="text-2xl">Add Transaction</h1>
 		<p class="text-sm text-gray-400">
 			If you have transfer money from one account to another your own, select the transaction type
 			as
@@ -27,7 +28,7 @@
 		</p>
 	</div>
 	<form
-		class="flex flex-col sm:grid sm:grid-cols-2 gap-4"
+		class="flex flex-col sm:grid sm:grid-cols-2 gap-4 mt-10"
 		method="post"
 		on:submit|preventDefault={handleSubmit}
 	>
