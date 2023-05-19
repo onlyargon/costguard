@@ -3,6 +3,7 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Loading from '$lib/components/Loading.svelte';
 	import Toast from '$lib/components/Toast.svelte';
+	import Footer from '../lib/components/Footer.svelte';
 
 	export let data;
 
@@ -14,5 +15,6 @@
 <div class="max-w-7xl mx-auto p-4 sm:px-0 sm:py-0 ">
 	<Navbar {links} user={data.user} />
 	<slot />
+	<Footer />
 </div>
 <Loading />

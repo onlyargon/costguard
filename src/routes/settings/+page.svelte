@@ -25,6 +25,7 @@
 				return;
 			}
 			setLoading(false);
+			toast('Settings saved successfully!');
 			await applyAction(result);
 		};
 	};

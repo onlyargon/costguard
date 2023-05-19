@@ -1,19 +1,28 @@
-<script>
+<script lang="ts">
 	import TextInput from '$lib/components/TextInput.svelte';
-	import { accounts, categories, transactionTypes } from '$lib/stores';
+	import { setLoading, toast, transactionTypes } from '$lib/stores';
 	import Select from '$lib/components/Select.svelte';
-	import { map } from 'zod';
+	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
+
+	export let data;
 
 	let selectedTransactionType = '';
 	let ownAccount = false;
 
 	let today = new Date().toISOString().split('T')[0];
 
-	// @ts-ignore
-	const handleSubmit = (event) => {
-		const formData = new FormData(event.target);
-		const data = Object.fromEntries(formData.entries());
-		console.log(data);
+	const saveFn: SubmitFunction = async () => {
+		setLoading(true);
+		return async ({ result }) => {
+			if (result.status !== 200 && result.status !== 303) {
+				setLoading(false);
+				toast('Something went wrong! Please try again later.');
+				return;
+			}
+			setLoading(false);
+			toast('Settings saved successfully!');
+			await applyAction(result);
+		};
 	};
 </script>
 
@@ -27,11 +36,7 @@
 			have transferred the money.
 		</p>
 	</div>
-	<form
-		class="flex flex-col sm:grid sm:grid-cols-2 gap-4 mt-10"
-		method="post"
-		on:submit|preventDefault={handleSubmit}
-	>
+	<form class="flex flex-col sm:grid sm:grid-cols-2 gap-4 mt-10" method="post" use:enhance={saveFn}>
 		<TextInput
 			label="Date"
 			name="date"
@@ -46,7 +51,7 @@
 			options={$transactionTypes}
 			bind:selected={selectedTransactionType}
 		/>
-		<Select label="From Account" name="fromAccount" options={$accounts} />
+		<Select label="Account" name="account" options={data.configs?.accounts} />
 		{#if selectedTransactionType === 'transfer'}
 			<div class="form-control">
 				<label class="label cursor-pointer gap-4">
@@ -57,7 +62,7 @@
 				</label>
 			</div>
 			{#if ownAccount}
-				<Select label="To Account" name="toAccount" options={$accounts} />
+				<Select label="To Account" name="toAccount" options={data.configs?.accounts} />
 			{/if}
 		{/if}
 		<TextInput
@@ -66,7 +71,7 @@
 			placeholder="Where did you shopped or for what made the payment?"
 		/>
 		<TextInput type="number" label="Amount" name="amount" placeholder="How much?" />
-		<Select label="Category" name="category" options={$categories} />
+		<Select label="Category" name="category" options={data.configs?.categories} />
 		<button class="btn btn-primary normal-case w-full"> Save </button>
 	</form>
 </div>
