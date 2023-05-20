@@ -40,3 +40,7 @@ export const getUserConfig = async (userId: string) => {
 
 	return null;
 };
+
+export const deleteTransaction = async (id: string) => {
+	return await pb.collection('transactions').delete(id);
+};

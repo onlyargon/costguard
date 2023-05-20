@@ -31,3 +31,13 @@ export const settingsSchema = zfd.formData({
 	accounts: zfd.text(z.string().nonempty()),
 	categories: zfd.text(z.string().nonempty())
 });
+
+export const transactionSchema = zfd.formData({
+	date: zfd.text(z.string().nonempty()),
+	amount: zfd.text(z.string().nonempty()),
+	category: zfd.text(z.string().nonempty()),
+	account: zfd.text(z.string().nonempty()),
+	transactionType: zfd.text(z.string().nonempty()),
+	// toAccount: zfd.text(z.string()),
+	remark: zfd.text(z.string().nonempty())
+});

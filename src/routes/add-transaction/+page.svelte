@@ -5,6 +5,7 @@
 	import { applyAction, enhance, type SubmitFunction } from '$app/forms';
 
 	export let data;
+	export let form;
 
 	let selectedTransactionType = '';
 	let ownAccount = false;
@@ -43,6 +44,7 @@
 			type="date"
 			placeholder="When did you make this transaction?"
 			bind:value={today}
+			errors={form?.errors?.date}
 		/>
 		<Select
 			id="transactionType"
@@ -50,8 +52,14 @@
 			name="transactionType"
 			options={$transactionTypes}
 			bind:selected={selectedTransactionType}
+			errors={form?.errors?.transactionType}
 		/>
-		<Select label="Account" name="account" options={data.configs?.accounts} />
+		<Select
+			label="Account"
+			name="account"
+			options={data.configs?.accounts}
+			errors={form?.errors?.account}
+		/>
 		{#if selectedTransactionType === 'transfer'}
 			<div class="form-control">
 				<label class="label cursor-pointer gap-4">
@@ -62,16 +70,33 @@
 				</label>
 			</div>
 			{#if ownAccount}
-				<Select label="To Account" name="toAccount" options={data.configs?.accounts} />
+				<Select
+					label="To Account"
+					name="toAccount"
+					options={data.configs?.accounts}
+					errors={form?.errors?.toAccount}
+				/>
 			{/if}
 		{/if}
 		<TextInput
 			label="Remark"
 			name="remark"
 			placeholder="Where did you shopped or for what made the payment?"
+			errors={form?.errors?.remark}
 		/>
-		<TextInput type="number" label="Amount" name="amount" placeholder="How much?" />
-		<Select label="Category" name="category" options={data.configs?.categories} />
+		<TextInput
+			type="number"
+			label="Amount"
+			name="amount"
+			placeholder="How much?"
+			errors={form?.errors?.amount}
+		/>
+		<Select
+			label="Category"
+			name="category"
+			options={data.configs?.categories}
+			errors={form?.errors?.category}
+		/>
 		<button class="btn btn-primary normal-case w-full"> Save </button>
 	</form>
 </div>
